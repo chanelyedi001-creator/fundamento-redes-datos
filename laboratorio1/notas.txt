@@ -1,4 +1,6 @@
-ipconfig es una herramienta de línea de comandos utilizada en sistemas operativos Windows para mostrar, administrar y diagnosticar 
+comando ipconfig:
+
+es una herramienta de línea de comandos utilizada en sistemas operativos Windows para mostrar, administrar y diagnosticar 
 la configuración de red de un equipo. Su nombre proviene de "Internet Protocol Configuration" (Configuración del Protocolo de Internet).
 Al ejecutarla, te permite ver de forma rápida los datos de conectividad de tus adaptadores de red, como el Wi-Fi o el cable Ethernet.
 
@@ -7,3 +9,25 @@ Cuando ejecutas el comando ipconfig por sí solo en la consola , obtienes tres d
 Dirección IPv4 / IPv6: La identidad única de tu computadora dentro de la red local.
 Máscara de subred: El código que delimita el tamaño y el alcance de tu red local.
 Puerta de enlace predeterminada: La dirección IP del router, que es el puente para que tu equipo salga a Internet.
+
+
+comando ping:
+
+El comando ping sirve para comprobar la conexión entre tu dispositivo y otro equipo en la red (como una computadora o una página web).Funciona enviando pequeños paquetes de datos de prue[Verificar si hay internet: Te ayuda a saber si el problema de conexión es de tu red local o de un sitio web específico.
+Medir la velocidad (Latencia): Mide en milisegundos cuánto tarda en ir y volver la información. Esto es lo que los jugadores de videojuegos conocen como "el ping" o "lag".
+Detectar pérdida de datos: Te muestra si algunos paquetes se pierden en el camino, lo que indica una conexión inestable.
+Cuando ejecutas el comando ping, la pantalla te muestra una serie de líneas con los resultados del viaje que hicieron tus datos.
+Esto es lo que ves detalladamente en los resultados:
+1. El intercambio de datos (Líneas principales)
+Por cada paquete enviado, verás una línea con la siguiente información:
+1. El intercambio de datos (Líneas principales)
+Por cada paquete enviado, verás una línea con la siguiente información:
+Respuesta desde... (Reply from...): Confirma la dirección IP del equipo o servidor que respondió.
+Bytes: El tamaño del paquete de prueba enviado (normalmente 32 bytes).
+Tiempo (Time): Cuánto tardó el viaje de ida y vuelta en milisegundos (ms). Mientras más bajo sea este número, más rápida es tu conexión.
+TTL (Time to Live): Un valor técnico que indica cuántos "saltos" (routers) pueden pasar los datos antes de ser descartados.
+2. El resumen final (Estadísticas)
+Al terminar el proceso, el comando te muestra un reporte con:
+Paquetes enviados, recibidos y perdidos: Si el número de paquetes perdidos es mayor a 0, significa que tu conexión está fallando o es inestable.
+Tiempos mínimos, máximos y promedio: Te da una idea clara de la estabilidad de la velocidad de tu red.
+
