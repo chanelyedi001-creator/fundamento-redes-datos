@@ -138,6 +138,25 @@ Borrar una ruta:
 sudo route del -net [IP_Destino
 
 
+El comando pathping : 
+
+Es una herramienta de diagnóstico de red en la línea de comandos de Windows. Combina la funcionalidad de ping y tracert para identificar de forma precisa la pérdida de paquetes y la latencia en cada salto de una ruta de red.   
+A diferencia de tracert, que solo te muestra los saltos, pathping envía múltiples paquetes a cada enrutador durante un periodo de tiempo (por defecto unos 4-5 minutos) y calcula estadísticas detalladas.
+Sintaxis Básica
+Para usarlo, abre el Símbolo del sistema (cmd) y ejecuta: pathping <destino>
+
+Ejemplo: pathping www.google.com o pathping 8.8.8.8
+
+salto: El número de parada en la ruta (0 es tu PC, 1 tu módem, etc.).
+RTT (Round Trip Time): El tiempo promedio en milisegundos que tarda el paquete en ir y volver a ese punto.
+Este nodo (Perdido/Enviado): Muestra si ese router específico está sobrecargado y descarta tus paquetes.
+El enlace (Línea con el símbolo |): Muestra si los paquetes se están perdiendo en el cable o conexión entre un router y el siguiente.
+
+
+
+
+
+
 
 
 
