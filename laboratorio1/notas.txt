@@ -31,3 +31,16 @@ Al terminar el proceso, el comando te muestra un reporte con:
 Paquetes enviados, recibidos y perdidos: Si el número de paquetes perdidos es mayor a 0, significa que tu conexión está fallando o es inestable.
 Tiempos mínimos, máximos y promedio: Te da una idea clara de la estabilidad de la velocidad de tu red.
 
+
+El comando tracert (abreviatura de traceroute) 
+
+Es una herramienta de diagnóstico de red utilizada para rastrear la ruta exacta que siguen los paquetes de datos desde tu dispositivo hasta un destino específico, como una página web o un servidor. Te ayuda a identificar en qué punto de la red ocurre una falla de conexión o un retraso de velocidad. 
+
+El comando tracert muestra una lista detallada de todos los routers (saltos) por los que pasa tu información desde tu computadora hasta llegar a la dirección web o IP que indicaste.
+Cada fila del resultado contiene 4 datos clave:
+Número de salto: El orden cronológico de los routers (1 es tu módem, 2 el de tu proveedor de internet, etc.).
+Tiempos de ida y vuelta (Latencia): Muestra tres columnas de tiempo en milisegundos (ms). Indica qué tan rápido respondió ese router a tres intentos distintos. Tiempos bajos son buenos; tiempos altos significan retrasos.
+Nombre del host: El nombre del servidor o router (si está disponible públicamente).
+Dirección IP: La identidad numérica de ese router específico.
+
+
