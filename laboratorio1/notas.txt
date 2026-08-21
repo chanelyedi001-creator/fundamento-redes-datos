@@ -172,6 +172,30 @@ hostname -f: Devuelve el FQDN o nombre de dominio completo de la máquina.
 sudo hostname [NUEVO_NOMBRE]: Cambia de forma temporal el nombre del equipo por el texto que elijas (requiere permisos root). 
 
 
+El comando getmac:
+
+Es una utilidad de Windows utilizada para obtener la dirección MAC (también conocida como dirección física o de hardware) de todos los adaptadores de red de un equipo. Esta herramienta es de gran ayuda para administradores que necesitan identificar hardware o configurar filtros de seguridad en routers y servidores DHCP sin tener que filtrar el extenso resultado de comandos como ipconfig. [
+Sintaxis y modificadores comunes
+Puedes ejecutar el comando base o combinarlo con los siguientes parámetros desde la Consola de Comandos (CMD):
+getmac: Muestra una lista simple de las direcciones MAC y los nombres de transporte actuales.
+getmac /v: Activa el modo detallado para ver el nombre real de cada tarjeta (Ethernet, Wi-Fi, Bluetooth) junto a su estado.
+getmac /fo list: Cambia el formato de salida a una lista estructurada, ideal para una lectura cómoda.
+getmac /s [NombreEquipo]: Permite consultar la dirección MAC de un equipo remoto conectado a la misma red local.
+
+
+Ejemplo de uso recomendado
+Para conseguir un reporte claro y ordenado de tus tarjetas de red, abre el CMD y escribe:
+getmac /v /fo list
+
+
+Nota: Toma en cuenta que getmac solo puede listar los adaptadores que se encuentran encendidos o conectados en ese momento. Si una tarjeta de red está deshabilitada, no aparecerá en el resultado. 
+El comando getmac muestra una tabla o lista con la información de red del equipo. Específicamente, te devolverá tres datos principales por cada tarjeta de red activa:
+Dirección física: Es la dirección MAC de 12 caracteres hexadecimales (por ejemplo, 00-1A-2B-3C-4D-5E). Es el identificador único del hardware.
+Nombre de transporte: Muestra la ruta interna de Windows para ese componente (por ejemplo, \Device\Tcpip_...). Si el cable está desconectado, aparecerá como Medio desconectado.
+Nombre de conexión (Solo con /v): Indica si la tarjeta corresponde al Wi-Fi, Ethernet o Bluetooth, junto con el modelo exacto del fabricante.
+
+
+
 
 
 
