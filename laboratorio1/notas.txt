@@ -1,0 +1,9 @@
+ipconfig es una herramienta de línea de comandos utilizada en sistemas operativos Windows para mostrar, administrar y diagnosticar 
+la configuración de red de un equipo. Su nombre proviene de "Internet Protocol Configuration" (Configuración del Protocolo de Internet).
+Al ejecutarla, te permite ver de forma rápida los datos de conectividad de tus adaptadores de red, como el Wi-Fi o el cable Ethernet.
+
+¿Qué información básica muestra?
+Cuando ejecutas el comando ipconfig por sí solo en la consola , obtienes tres datos esenciales para cada adaptador activo: 
+Dirección IPv4 / IPv6: La identidad única de tu computadora dentro de la red local.
+Máscara de subred: El código que delimita el tamaño y el alcance de tu red local.
+Puerta de enlace predeterminada: La dirección IP del router, que es el puente para que tu equipo salga a Internet.
