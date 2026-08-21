@@ -101,6 +101,44 @@ Tipo: Indica si la dirección se descubrió automáticamente (dinámica) o si se
 Solución de problemas de red: Si un equipo cambió de tarjeta de red o hay un conflicto de IPs, la caché puede quedar desactualizada. Ejecutar arp -d * (en Windows, con permisos de administrador) forzará al sistema a buscar de nuevo las direcciones físicas de la red. 
 
 
+El comando route:
+es una herramienta fundamental de red que te permite administrar las tablas de enrutamiento IP del sistema operativo. Su función principal es indicarle a tu computadora qué camino (interfaz de red o puerta de enlace) debe tomar un paquete de datos para llegar a un destino específico. 
+En Windows (Símbolo del sistema / CMD)
+Nota: Debes abrir el CMD como Administrador para ejecutar estos comandos.
+Ver la tabla de enrutamiento:
+route print
+
+
+Añadir una ruta temporal:
+route add [IP_Destino] mask [Máscara] [Puerta_Enlace]
+
+
+Ejemplo: route add 10.0.0.0 mask 255.0.0.0 192.168.1.1
+Añadir una ruta permanente (no se borra al reiniciar):
+route -p add 10.0.0.0 mask 255.0.0.0 192.168.1.1
+
+
+Borrar una ruta:
+route delete [IP_Destino]
+
+🐧 En Linux (Terminal)
+Nota: En versiones modernas de Linux se prefiere el comando ip route, pero el comando clásico route sigue vigente en muchos sistemas. Ver la tabla de enrutamiento:
+route -n
+
+
+(Equivalente moderno: ip route show)
+Añadir una puerta de enlace predeterminada:
+sudo route add default gw [IP_Puerta_Enlace]
+
+
+(Equivalente moderno: sudo ip route add default via [IP_Puerta_Enlace])
+Añadir una ruta a una red específica:
+sudo route add -net [IP_Destino] netmask [Máscara] gw [IP_Puerta_Enlace]
+Borrar una ruta:
+sudo route del -net [IP_Destino
+
+
+
 
 
 
