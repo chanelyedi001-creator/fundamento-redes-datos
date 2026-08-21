@@ -70,5 +70,37 @@ Búsqueda inversa: Encuentra el nombre de dominio asociado a una dirección IP e
 Diagnosticar problemas: Permite verificar si tu servidor DNS funciona bien o si un sitio web no carga debido a un fallo en la resolución de nombres.
 Consultar registros específicos: Puede buscar datos avanzados de un dominio, como sus servidores de correo (registros MX) o sus alias (registros CNAME).
 
+El comando arp:
+
+Es una herramienta de consola utilizada en sistemas operativos como Windows, Linux y macOS para mostrar y modificar la tabla de caché ARP (Protocolo de Resolución de Direcciones). Su función principal es mapear direcciones IP (lógicas) con sus respectivas direcciones MAC (físicas) dentro de una red local.  
+
+Principales parámetros del comando arp
+Parámetro
+Propósito
+Ejemplo de uso
+-a o -g
+Muestra la tabla caché ARP actual con todas sus entradas.
+arp -a
+-d
+Elimina una entrada específica o limpia la caché completa.
+arp -d 192.168.1.1
+-s
+Agrega una entrada estática permanente (vínculo IP-MAC manual).
+arp -s 192.168.1.50 00-aa-00-62-c6-09
+-v
+Muestra los datos en modo detallado (no disponible en todos los sistemas).
+arp -a -v
+
+
+📋 Ejemplos prácticos y diagnóstico
+Ver los dispositivos conectados: Al ejecutar arp -a en tu terminal, verás un listado dividido en tres columnas:
+Dirección de Internet (IP): El identificador lógico del equipo.
+Dirección física (MAC): El identificador único de la tarjeta de red de ese equipo.
+Tipo: Indica si la dirección se descubrió automáticamente (dinámica) o si se ingresó a mano (estática).
+
+Solución de problemas de red: Si un equipo cambió de tarjeta de red o hay un conflicto de IPs, la caché puede quedar desactualizada. Ejecutar arp -d * (en Windows, con permisos de administrador) forzará al sistema a buscar de nuevo las direcciones físicas de la red. 
+
+
+
 
 
