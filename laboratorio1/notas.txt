@@ -43,4 +43,32 @@ Tiempos de ida y vuelta (Latencia): Muestra tres columnas de tiempo en milisegun
 Nombre del host: El nombre del servidor o router (si está disponible públicamente).
 Dirección IP: La identidad numérica de ese router específico.
 
+El comando netstat (Network Statistics):
+ es una herramienta de línea de comandos utilizada para monitorear conexiones de red, ver estadísticas de protocolos y diagnosticar problemas de conectividad en sistemas operativos como Windows, Linux y macOS 
+Principales casos de uso
+Identificar puertos abiertos y servicios en escucha.
+Detectar conexiones no autorizadas o posibles aplicaciones maliciosas enviando datos.
+Verificar el estado de las interfaces de red actuales y tablas de
+El comando netstat muestra principalmente una lista detallada de todas las comunicaciones de red activas de tu computadora hacia el exterior, y viceversa.
+Cada línea del resultado se divide en las siguientes columnas principales:
+Los 5 datos clave que muestra
+Proto (Protocolo): Indica el protocolo de transporte utilizado, generalmente TCP (conexión segura de ida y vuelta) o UDP (envío rápido de datos).
+Dirección local (Local Address): Es la dirección IP de tu computadora seguida del número de puerto interno que se está utilizando para esa conexión (por ejemplo, 192.168.1.15:49152). Si dice 0.0.0.0 o ::, significa que está escuchando en todas las interfaces disponibles.
+Dirección remota (Foreign Address): Es la dirección IP externa o servidor de internet al que tu equipo está conectado, junto con su puerto (por ejemplo, la IP de un servidor de Google, Netflix, o una página web).
+Estado (State): Indica la situación actual de la conexión. Los estados más comunes son:
+LISTENING: El puerto está abierto, esperando a que alguien se conecte a él (común en servidores o servicios del sistema).
+ESTABLISHED: La conexión está activa y tu equipo está intercambiando datos en ese preciso momento con el servidor remoto.
+CLOSE_WAIT / TIME_WAIT: La conexión se está cerrando o está esperando a terminar de limpiarse. [1]
+PID (Identificador de Proceso): (Se activa usando parámetros como -o en Windows o -p en Linux). Es un número único que te dice qué programa exacto de tu sistema originó esa conexión (por ejemplo, el navegador web, Spotify, o un proceso del sistema operativo).
+
+
+nslookup:
+ Es una herramienta de línea de comandos utilizada para consultar servidores DNS y obtener información sobre la asignación de nombres de dominio o direcciones IP. Su nombre proviene de Name Server Lookup (Búsqueda de Servidor de Nombres).
+Sirve principalmente para resolver funciones clave de red:
+Traducir nombres a IPs: Descubre la dirección IP exacta detrás de un dominio (por ejemplo, qué IP tiene google.com).
+Búsqueda inversa: Encuentra el nombre de dominio asociado a una dirección IP específica.
+Diagnosticar problemas: Permite verificar si tu servidor DNS funciona bien o si un sitio web no carga debido a un fallo en la resolución de nombres.
+Consultar registros específicos: Puede buscar datos avanzados de un dominio, como sus servidores de correo (registros MX) o sus alias (registros CNAME).
+
+
 
