@@ -1,0 +1,188 @@
+1. net localgroup
+
+Definición en lenguaje no técnico: Muestra una lista de todos los "clubes" o "carpetas de permisos" (grupos locales) que existen en la computadora.
+Caso de uso: Reconocimiento inicial en una auditoría de seguridad o revisión rápida de inventario de permisos en el equipo.
+Fórmula o Sintaxis:
+DOS
+net localgroup
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Realiza la operación en el controlador del dominio principal en lugar del equipo local.
+
+
+Ejemplo:
+DOS
+net localgroup
+
+Escenario de práctica (Entrevista / Auditoría / Red Team):
+Pregunta de entrevista: "Si acabas de obtener acceso remoto limitado a una máquina Windows mediante consola, ¿cómo identificas los grupos de usuarios del equipo?"
+Respuesta: "Ejecuto net localgroup para ver qué grupos existen localmente en el sistema, prestando especial atención a Administradores, Usuarios de escritorio remoto o de copia de seguridad."
+Referencia externa:
+Documentación oficial de Microsoft Learn: [net localgroup command reference]
+Libro: Windows Server Administration Fundamentals (Microsoft Official Academic Course).
+
+2. net localgroup <grupo>
+
+Definición en lenguaje no técnico: Muestra los nombres de todas las personas (usuarios) que están guardadas dentro de un "club" específico.
+Caso de uso: Auditar quiénes tienen permisos privilegiados (por ejemplo, ver quiénes están en el grupo de Administradores).
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>"
+
+
+
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Busca la información del grupo local en el servidor de dominio.
+
+
+Ejemplo:
+DOS
+net localgroup "Administradores"
+
+Escenario de práctica (Red Team / Incident Response):
+Escenario de trabajo: En un incidente de seguridad, te piden validar si un atacante logró elevar privilegios o crear un usuario con acceso administrativo local.
+Acción: Corres net localgroup Administradores para comparar la lista de miembros contra la política interna de cuentas autorizadas.
+Referencia externa:
+Canal de YouTube: SANS Cyber Aces - Windows Privilege Enumeration.
+Libro: Practical Malware Analysis (No Starch Press).
+
+3. net localgroup <grupo> /add
+
+Definición en lenguaje no técnico: Crea un "club" o grupo de permisos completamente nuevo en la computadora.
+Caso de uso: Preparar el sistema organizando permisos para un nuevo departamento o rol técnico (ej. un grupo para auditores externos).
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>" /add
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/comment:"<texto>"
+Agrega una breve descripción al grupo al momento de su creación.
+/domain
+Crea el grupo en el controlador de dominio.
+
+Ejemplo:
+DOS
+net localgroup "AuditoresSeguridad" /add
+
+Escenario de práctica (SysAdmin / Entrevista):
+Pregunta de entrevista: "Necesitamos delegar el acceso a carpetas compartidas a 5 analistas nuevos sin darles permisos de administrador, ¿cuál es la mejor práctica mediante línea de comandos?"
+Respuesta: "Crear un grupo local dedicado con net localgroup Auditores /add, asignarle los permisos a la carpeta y luego agregar las cuentas al grupo."
+Referencia externa:
+Editorial: O'Reilly - Windows Command-Line Administrator's Pocket Consultant.
+
+
+4. net localgroup <grupo> /delete
+
+Definición en lenguaje no técnico: Destruye o borra un grupo existente en el sistema (no elimina a los usuarios contenidos en él, solo la agrupación).
+Caso de uso: Limpieza de grupos obsoletos que ya no se utilizan en la organización para reducir la superficie de ataque.
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>" /delete
+
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Elimina el grupo del controlador de dominio.
+
+
+Ejemplo:
+DOS
+net localgroup "AuditoresSeguridad" /delete
+
+Escenario de práctica (Blue Team / Hardening):
+Escenario de trabajo: Durante un proceso de endurecimiento de sistemas (hardening), identificas grupos creados por herramientas o malware antiguos que ya no deben estar presentes. Ejecutas la eliminación mediante scripts automatizados con el flag /delete.
+Referencia externa:
+Guía CIS Benchmarks (Center for Internet Security) para Windows Workstation/Server.
+
+5. net localgroup <grupo> <usuario> /add
+
+Definición en lenguaje no técnico: Mete a una persona (cuenta de usuario) dentro de un "club" (grupo) para que herede automáticamente todos sus permisos.
+Caso de uso: Elevar privilegios a un usuario técnico (agregándolo al grupo Administradores) o habilitar acceso remoto a un empleado (agregándolo a Usuarios de escritorio remoto).
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>" "<nombre_de_usuario>" /add
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Añade un usuario de dominio al grupo local seleccionado.
+
+
+Ejemplo:
+DOS
+net localgroup "Administradores" "soporte_tecnico" /add
+
+Escenario de práctica (Pentesting / Persistence):
+Escenario Red Team: Una vez obtenido acceso SYSTEM mediante un exploit local, el atacante ejecuta net localgroup Administradores mi_backdoor /add para asegurar persisencia con derechos elevados.
+Pregunta de entrevista Blue Team: "¿Cómo detectaría esta acción?" -> "Monitoreando el Event Log de Windows (ID de Evento 4732: Un miembro fue añadido a un grupo local de seguridad)."
+Referencia externa:
+MITRE ATT&CK Framework: Técnica T1098 (Account Manipulation).
+Libro: The Hacker Playbook 3 (Peter Kim).
+
+6. net localgroup <grupo> <usuario> /delete
+
+Definición en lenguaje no técnico: Saca a una persona de un "club" para quitarle de inmediato los permisos asociados a ese grupo.
+Caso de uso: Revocar accesos privilegiados a un empleado que cambió de departamento o sancionar permisos excesivos.
+
+
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>" "<nombre_de_usuario>" /delete
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Remueve un usuario de dominio del grupo local.
+
+
+Ejemplo:
+DOS
+net localgroup "Usuarios de escritorio remoto" "usuario_invitado" /delete
+
+Escenario de práctica (Respuesta a Incidentes):
+Escenario de trabajo: Se detecta actividad sospechosa desde la cuenta contratista01 en una sesión RDP. Como medida de contención inmediata, se remueve al usuario del grupo de acceso remoto usando este comando mientras se investiga la cuenta.
+Referencia externa:
+Publicación NIST SP 800-61 (Computer Security Incident Handling Guide)
+
+7. net localgroup <grupo> /comment:"<descripción>"
+
+Definición en lenguaje no técnico: Le coloca una nota explicativa o etiqueta al "club" para recordar para qué sirve o quién lo autorizó.
+Caso de uso: Mantener la documentación clara del sistema y evitar que otros administradores borren el grupo por error.
+Fórmula o Sintaxis:
+DOS
+net localgroup "<nombre_del_grupo>" /comment:"<texto_de_la_descripcion>"
+
+
+Tabla de subcomandos / Parámetros:
+Parámetro
+Definición
+/domain
+Actualiza la descripción del grupo en el controlador de dominio.
+
+
+
+Ejemplo:
+DOS
+net localgroup "AuditoresSeguridad" /comment:"Grupo temporal autorizado por Ticket #94821"
+
+Escenario de práctica (Gobernanza / Auditoría de TI):
+Escenario de trabajo: Durante un proceso de auditoría ISO 27001 o PCI-DSS, el auditor exige que cada rol o grupo de seguridad en los servidores tenga una justificación clara y trazable. Aplicas comentarios estandarizados a los grupos locales creados.
+
+
+Referencia externa:
+Documentación oficial: Microsoft TechNet / Windows CLI reference.
+
+
