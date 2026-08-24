@@ -9,6 +9,7 @@ Escenario de práctica / Entrevista: Te piden auditar un servidor que acaba de s
 Referencia externa: Documentación oficial de Microsoft Learn (Net user command reference).
 
 2. net user [usuario] (Consulta Específica)
+
 Definición no técnica: Es pedir la "ficha completa" de una persona en específico: cuándo entró por última vez, cuándo vence su contraseña y qué permisos tiene.
 Caso de uso: Investigar los detalles y directivas de seguridad aplicadas a una cuenta en particular.
 Fórmula o sintaxis: net user [nombre_de_usuario]
@@ -16,6 +17,7 @@ Tabla de subcomandos/parámetros: No aplica.
 Ejemplo: net user Juan
 Escenario de práctica / Entrevista: Pregunta de entrevista: "¿Cómo verificas cuándo vence la contraseña de un usuario local desde la consola?" Respuesta: Ejecutando net user [usuario] y revisando la línea La contraseña expira.
 Referencia externa: Libro Windows Command Line Administration Instant Reference (Sybex).
+
 3. net user [usuario] [contraseña] /add (Crear Usuario)
 
 Definición no técnica: Sirve para dar de alta a un nuevo integrante en la computadora, asignándole su nombre y su clave de entrada.
@@ -33,6 +35,7 @@ Escenario de práctica: En tu trabajo de soporte técnico, necesitas automatizar
 Referencia externa: Curso de Administración de Windows Server en Pluralsight / YouTube (canal PowerShell & CMD Basics).
 
 4. net user [usuario] /delete (Eliminar Usuario)
+
 Definición no técnica: Borra por completo la "ficha" y el acceso de una persona en la computadora.
 Caso de uso: Dar de baja la cuenta de un empleado que ya no trabaja en la empresa.
 Fórmula o sintaxis: net user [nombre_de_usuario] /delete
@@ -84,6 +87,7 @@ Escenario de práctica: Un usuario reporta sospecha de phishing en su cuenta. Co
 Referencia externa: YouTube (Canal NetworkChuck - Tutoriales de Administración de Windows).
 
 7. net user [usuario] /fullname:"[Nombre Real]" (Nombre Completo)
+
 Definición no técnica: Le agrega la etiqueta con el nombre y apellido real a la cuenta (que a veces solo usa un apodo o ID corto).
 Caso de uso: Documentar correctamente quién es el dueño real de la cuenta usr_adm01.
 Fórmula o sintaxis: net user [nombre_de_usuario] /fullname:"[Nombre y Apellido]"
@@ -99,6 +103,7 @@ Escenario de práctica: En una auditoría de TI se exige que todas las cuentas g
 Referencia externa: Manuales de acreditación ISO 27001 (Control de Identidades).
 
 8. net user [usuario] /comment:"[Texto]" (Añadir Comentario)
+
 Definición no técnica: Permite escribir una "nota adhesiva" en la ficha del usuario para saber quién es o para qué sirve esa cuenta.
 Caso de uso: Especificar el departamento o el motivo por el cual se creó una cuenta temporal.
 Fórmula o sintaxis: net user [nombre_de_usuario] /comment:"[Texto descriptivo]"
@@ -133,6 +138,7 @@ Escenario de práctica / Entrevista: "¿Cómo aseguras un equipo de acceso públ
 Referencia externa: Guías de hardening para Windows de CIS Security (Center for Internet Security).
 
 10. net user [usuario] /expires:[fecha | never] (Fecha de Expiración de Cuenta)
+
 Definición no técnica: Le pone una "fecha de caducidad" a la cuenta. Llegado ese día, la cuenta se autodeshabilita.
 Caso de uso: Configurar accesos para becarios, contratistas o proveedores temporales.
 Fórmula o sintaxis: net user [nombre_de_usuario] /expires:{MM/DD/AAAA | DD/MM/AAAA | never} (El formato depende de la configuración regional).
@@ -150,6 +156,7 @@ Escenario de práctica: Creas una cuenta para un auditor externo que estará en 
 Referencia externa: Microsoft Learn (Managing User Accounts with Command Line).
 
 11. net user [usuario] * (Cambiar Contraseña de Forma Oculta)
+
 Definición no técnica: Cambia la clave de una cuenta sin que los caracteres se vean en pantalla mientras escribes, evitando que personas a tu alrededor la descubran.
 Caso de uso: Restablecer la contraseña de un usuario o administrador de forma segura frente al cliente o en entornos compartidos.
 Fórmula o sintaxis: net user [nombre_de_usuario] *
@@ -163,6 +170,103 @@ Solicita la nueva contraseña y la confirmación en modo oculto (sin eco en pant
 Ejemplo: net user Admin Local *
 Escenario de práctica / Entrevista: Pregunta de examen técnico: "¿Por qué nunca debes ejecutar net user Juan Clave123 directamente en producción?" Respuesta: Porque la clave queda grabada en texto plano en el historial de comandos (doskey /history). La forma segura es usar net user Juan *.
 Referencia externa: Cursos de certificación Certified Ethical Hacker (CEH) - Sección de seguridad operacional (OpSec).
+
+
+
+12. net user <usuario> /passwordchg:no
+
+1. Definición en lenguaje no técnico:
+Es una orden que le quita el permiso a un usuario para que no pueda cambiar su propia contraseña. La clave solo la podrá modificar el administrador del sistema.
+2. Caso de uso:
+Se utiliza en entornos corporativos o colegios cuando asignas una cuenta con una contraseña estándar a un empleado temporal, estudiante o usuario de soporte, y necesitas evitar que la cambien y luego la olviden.
+3. Fórmula o sintaxis:
+net user <nombre_de_usuario> /passwordchg:{yes|no}
+4. Tabla con parámetros opcionales del contexto:
+Parámetro
+Definición / Función
+yes
+Permite que el usuario vuelva a cambiar su contraseña normalmente.
+no
+Bloquea la capacidad del usuario para cambiar su contraseña.
+
+5. Ejemplos:
+Impedir cambio de clave a un usuario llamado Invitado:
+net user Invitado /passwordchg:no
+Volver a permitir el cambio de clave:
+net user Invitado /passwordchg:yes
+6. Escenario de práctica de entrevista / Situación laboral:
+Pregunta de entrevista: "Si un usuario de la empresa cambia constantemente su clave por una no autorizada y olvida el acceso, ¿cómo evitas esto mediante la consola de Windows?"
+Respuesta práctica: "Ejecuto net user <usuario> /passwordchg:no desde un CMD con privilegios elevados. Esto asegura que el usuario no modifique la credencial asignada por la política del departamento de TI."
+7. Referencias externas sugeridas:
+Documentación oficial: Microsoft Learn (artículo sobre el comando net user).
+Libros: Windows Server Administration Fundamentals (Microsoft Official Academic Course).
+YouTube: Buscar "Cómo bloquear el cambio de contraseña a un usuario en CMD".
+
+13. net user <usuario> /expires:<fecha>
+
+1. Definición en lenguaje no técnico:
+Es un temporizador para las cuentas de usuario. Permite ponerle una "fecha de caducidad" a la cuenta para que deje de funcionar automáticamente en un día determinado.
+2. Caso de uso:
+Gestión de accesos para pasantes, contratistas o consultores externos que solo trabajarán en la empresa durante un período fijo (por ejemplo, 30 días). Evita que la cuenta quede activa indefinidamente tras su partida.
+3. Fórmula o sintaxis:
+net user <nombre_de_usuario> /expires:{fecha | never}
+4. Tabla con opciones y formatos:
+Opción / Subcomando
+Definición
+mm/dd/aa
+Establece la fecha límite en formato Mes/Día/Año (ejemplo: 12/31/26).
+dd/mm/aa
+Formato alternativo dependiendo de la configuración regional del sistema.
+never
+Elimina la fecha de expiración; la cuenta nunca caducará por tiempo.
+
+5. Ejemplos:
+Definir que la cuenta del contratista JuanPerez caduque el 31 de diciembre de 2026:
+net user JuanPerez /expires:12/31/26
+Hacer que la cuenta vuelva a no caducar nunca:
+net user JuanPerez /expires:never
+6. Escenario de práctica de entrevista / Situación laboral:
+Pregunta de entrevista: "¿Cómo garantiza desde el área de Ciberseguridad el principio de menor privilegio con los consultores externos que se van el mes que viene?"
+Respuesta práctica: "Al crear su cuenta de usuario local o de dominio, configuro la fecha límite con net user <usuario> /expires:<fecha>. De este modo, si la administración olvida deshabilitar la cuenta manualmente, el sistema bloquea el acceso de forma automatizada al vencer la fecha."
+7. Referencias externas sugeridas:
+Documentación oficial: Microsoft TechNet / Windows Commands Index.
+Libros: CompTIA Security+ Study Guide (capítulo sobre gestión de identidades y ciclo de vida de cuentas).
+YouTube: Buscar "Configurar expiración de usuarios en Windows mediante línea de comandos".
+
+14. net user <usuario> *
+
+1. Definición en lenguaje no técnico:
+Es la forma más segura de cambiar la contraseña de un usuario desde la consola, ya que te pide escribir la nueva clave "a ciegas" (sin mostrar los caracteres en pantalla) para que nadie a tu alrededor la vea.
+2. Caso de uso:
+Soporte técnico y respuesta a incidentes. Cuando un administrador debe restablecer la contraseña de un usuario que fue comprometido o que la olvidó, sin dejar la nueva clave guardada en el historial de comandos en texto plano.
+3. Fórmula o sintaxis:
+net user <nombre_de_usuario> *
+4. Tabla de comportamientos durante la ejecución:
+Entrada requerida
+Comportamiento en pantalla
+Escriba una contraseña para el usuario:
+Los caracteres no se muestran al escribir (protección visual).
+Vuelva a escribir la contraseña para confirmar:
+Debe coincidir exactamente con la primera para aplicar el cambio.
+
+5. Ejemplos:
+Iniciar el proceso seguro para cambiar la clave del usuario Carlos:
+net user Carlos *
+(El sistema responderá solicitando la clave dos veces sin mostrar los caracteres).
+6. Escenario de práctica de entrevista / Situación laboral:
+Pregunta de entrevista: "Si ejecutas net user Carlos 123456 estás cambiando la clave, pero ¿por qué esto es una mala práctica de seguridad y cómo lo corregirías?"
+Respuesta práctica: "Es inseguro porque la contraseña queda grabada en texto claro en el historial del terminal (doskey /history) y en los logs. La forma correcta es usar net user Carlos *, lo cual solicita la contraseña con un prompt oculto."
+7. Referencias externas sugeridas:
+Documentación oficial: Microsoft Learn (Sección Security Guidelines for Command Line).
+Libros: Windows Command Line Administration Instant Reference (Sybex).
+YouTube: Buscar "Cambiar contraseña de usuario en Windows CMD de forma oculta".
+
+
+
+
+
+
+
 
 
 
